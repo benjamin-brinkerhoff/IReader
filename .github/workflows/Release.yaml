@@ -238,8 +238,8 @@ jobs:
           SUPABASE_ANALYTICS_KEY: ${{ secrets.SUPABASE_ANALYTICS_KEY }}
         run: |
           ./gradlew :presentation:embedAndSignAppleFrameworkForXcode \
-            -PCONFIGURATION=Release \
-            -PSDK_NAME=$SDK_NAME \
+            -PCONFIGURATION="${CONFIGURATION}" \
+            -PSDK_NAME="${SDK_NAME}" \
             --no-configuration-cache
 
       - name: Archive (unsigned)
@@ -247,7 +247,7 @@ jobs:
           xcodebuild archive \
             -project iosApp/iosApp.xcodeproj \
             -scheme iosApp \
-            -configuration Release \
+            -configuration "${CONFIGURATION}" \
             -destination "generic/platform=iOS" \
             -archivePath "$RUNNER_TEMP/IReader.xcarchive" \
             ARCHS="$ARCHS" \
