@@ -49,6 +49,9 @@ jobs:
           echo "CONFIGURATION=${{ github.event.inputs.configuration || 'Release' }}" >> "$GITHUB_ENV"
           echo "SDK_NAME=iphoneos" >> "$GITHUB_ENV"
           echo "ARCHS=arm64" >> "$GITHUB_ENV"
+          echo "PLATFORM_NAME=iphoneos" >> "$GITHUB_ENV"
+          echo "XCODE_TARGET=iosApp" >> "$GITHUB_ENV"
+          echo "TARGET_BUILD_DIR=$RUNNER_TEMP/build" >> "$GITHUB_ENV"
 
       # Build the Kotlin Multiplatform framework for the device target (arm64).
       # The Xcode build phase script does the same thing, but we run it here
