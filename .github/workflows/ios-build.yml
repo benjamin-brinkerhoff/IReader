@@ -44,6 +44,12 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
+      - name: Set iOS build environment
+        run: |
+          echo "CONFIGURATION=${{ github.event.inputs.configuration || 'Release' }}" >> "$GITHUB_ENV"
+          echo "SDK_NAME=iphoneos" >> "$GITHUB_ENV"
+          echo "ARCHS=arm64" >> "$GITHUB_ENV"
+
       # Build the Kotlin Multiplatform framework for the device target (arm64).
       # The Xcode build phase script does the same thing, but we run it here
       # so that Xcode itself can skip the Gradle step (CI=true check in the script).
@@ -51,10 +57,11 @@ jobs:
         env:
           CONFIGURATION: ${{ github.event.inputs.configuration || 'Release' }}
           SDK_NAME: iphoneos
+          ARCHS: arm64
         run: |
           ./gradlew :presentation:embedAndSignAppleFrameworkForXcode \
             -PCONFIGURATION=$CONFIGURATION \
-            -PSDK_NAME=iphoneos \
+            -PSDK_NAME=$SDK_NAME \
             --no-configuration-cache
 
       # Archive the app without any code signing.
@@ -66,6 +73,7 @@ jobs:
             -configuration ${{ github.event.inputs.configuration || 'Release' }} \
             -destination "generic/platform=iOS" \
             -archivePath "$RUNNER_TEMP/IReader.xcarchive" \
+            ARCHS="$ARCHS" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
