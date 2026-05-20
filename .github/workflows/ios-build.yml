@@ -1,0 +1,114 @@
+name: iOS IPA Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: 'Build configuration'
+        required: false
+        default: 'Release'
+        type: choice
+        options:
+          - Release
+          - Debug
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-ios:
+    name: Build unsigned IPA
+    runs-on: macos-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: temurin
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # Select the Xcode version that ships with macos-latest
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      # Build the Kotlin Multiplatform framework for the device target (arm64).
+      # The Xcode build phase script does the same thing, but we run it here
+      # so that Xcode itself can skip the Gradle step (CI=true check in the script).
+      - name: Build Kotlin framework (iosArm64)
+        env:
+          CONFIGURATION: ${{ github.event.inputs.configuration || 'Release' }}
+          SDK_NAME: iphoneos
+        run: |
+          ./gradlew :presentation:embedAndSignAppleFrameworkForXcode \
+            -PCONFIGURATION=$CONFIGURATION \
+            -PSDK_NAME=iphoneos \
+            --no-configuration-cache
+
+      # Archive the app without any code signing.
+      - name: Archive (unsigned)
+        run: |
+          xcodebuild archive \
+            -project iosApp/iosApp.xcodeproj \
+            -scheme iosApp \
+            -configuration ${{ github.event.inputs.configuration || 'Release' }} \
+            -destination "generic/platform=iOS" \
+            -archivePath "$RUNNER_TEMP/IReader.xcarchive" \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcpretty || true
+
+      # Package the .app into a standard IPA layout:
+      #   IReader.ipa
+      #   └── Payload/
+      #       └── iosApp.app/
+      - name: Package unsigned IPA
+        run: |
+          APP_PATH=$(find "$RUNNER_TEMP/IReader.xcarchive/Products" -name "*.app" | head -1)
+          echo "Found .app at: $APP_PATH"
+
+          mkdir -p "$RUNNER_TEMP/ipa/Payload"
+          cp -r "$APP_PATH" "$RUNNER_TEMP/ipa/Payload/"
+
+          cd "$RUNNER_TEMP/ipa"
+          zip -r "$RUNNER_TEMP/IReader-unsigned.ipa" Payload
+
+          echo "IPA created: $RUNNER_TEMP/IReader-unsigned.ipa"
+          ls -lh "$RUNNER_TEMP/IReader-unsigned.ipa"
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: IReader-unsigned-ipa
+          path: ${{ runner.temp }}/IReader-unsigned.ipa
+          retention-days: 30
+
+      - name: Upload xcarchive (for external signing)
+        uses: actions/upload-artifact@v4
+        with:
+          name: IReader-xcarchive
+          path: ${{ runner.temp }}/IReader.xcarchive
+          retention-days: 7
+
+      - name: Upload build logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-logs
+          path: |
+            ~/Library/Logs/gym/
+            ~/Library/Developer/Xcode/DerivedData/**/Logs/
+          retention-days: 3
