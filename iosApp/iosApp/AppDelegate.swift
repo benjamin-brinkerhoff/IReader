@@ -4,19 +4,14 @@ import presentation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        
-        // Use Compose Multiplatform UI - MainKt is from Main.kt (no package)
-        let composeVC = MainKt.MainViewController()
-        window?.rootViewController = composeVC
-        window?.makeKeyAndVisible()
-        
+        // Initialize Koin dependency injection before any UI is created.
+        // SceneDelegate handles window/UI setup via UIApplicationSceneManifest.
+        IosKoinInitKt.shared.initKoin(additionalModules: [])
         return true
     }
 
