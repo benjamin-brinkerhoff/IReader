@@ -214,10 +214,14 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app
 
+      - name: Set iOS build environment
+        run: |
+          echo "CONFIGURATION=Release" >> "$GITHUB_ENV"
+          echo "SDK_NAME=iphoneos" >> "$GITHUB_ENV"
+          echo "ARCHS=arm64" >> "$GITHUB_ENV"
+
       - name: Build Kotlin framework (iosArm64)
         env:
-          CONFIGURATION: Release
-          SDK_NAME: iphoneos
           SUPABASE_AUTH_URL: ${{ secrets.SUPABASE_AUTH_URL }}
           SUPABASE_AUTH_KEY: ${{ secrets.SUPABASE_AUTH_KEY }}
           SUPABASE_READING_URL: ${{ secrets.SUPABASE_READING_URL }}
@@ -234,8 +238,8 @@ jobs:
           SUPABASE_ANALYTICS_KEY: ${{ secrets.SUPABASE_ANALYTICS_KEY }}
         run: |
           ./gradlew :presentation:embedAndSignAppleFrameworkForXcode \
-            -PCONFIGURATION=Release \
-            -PSDK_NAME=iphoneos \
+            -PCONFIGURATION="${CONFIGURATION}" \
+            -PSDK_NAME="${SDK_NAME}" \
             --no-configuration-cache
 
       - name: Archive (unsigned)
@@ -243,9 +247,10 @@ jobs:
           xcodebuild archive \
             -project iosApp/iosApp.xcodeproj \
             -scheme iosApp \
-            -configuration Release \
+            -configuration "${CONFIGURATION}" \
             -destination "generic/platform=iOS" \
             -archivePath "$RUNNER_TEMP/IReader.xcarchive" \
+            ARCHS="$ARCHS" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
