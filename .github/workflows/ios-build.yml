@@ -52,6 +52,9 @@ jobs:
           echo "PLATFORM_NAME=iphoneos" >> "$GITHUB_ENV"
           echo "XCODE_TARGET=iosApp" >> "$GITHUB_ENV"
           echo "TARGET_BUILD_DIR=$RUNNER_TEMP/build" >> "$GITHUB_ENV"
+          echo "BUILT_PRODUCTS_DIR=$RUNNER_TEMP/build" >> "$GITHUB_ENV"
+          echo "UNLOCALIZED_RESOURCES_FOLDER_PATH=iosApp.app" >> "$GITHUB_ENV"
+          echo "FRAMEWORKS_FOLDER_PATH=Frameworks" >> "$GITHUB_ENV"
 
       # Build the Kotlin Multiplatform framework for the device target (arm64).
       # The Xcode build phase script does the same thing, but we run it here
