@@ -54,10 +54,6 @@ jobs:
       # The Xcode build phase script does the same thing, but we run it here
       # so that Xcode itself can skip the Gradle step (CI=true check in the script).
       - name: Build Kotlin framework (iosArm64)
-        env:
-          CONFIGURATION: ${{ github.event.inputs.configuration || 'Release' }}
-          SDK_NAME: iphoneos
-          ARCHS: arm64
         run: |
           ./gradlew :presentation:embedAndSignAppleFrameworkForXcode \
             -PCONFIGURATION=$CONFIGURATION \

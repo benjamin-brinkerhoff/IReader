@@ -222,9 +222,6 @@ jobs:
 
       - name: Build Kotlin framework (iosArm64)
         env:
-          CONFIGURATION: Release
-          SDK_NAME: iphoneos
-          ARCHS: arm64
           SUPABASE_AUTH_URL: ${{ secrets.SUPABASE_AUTH_URL }}
           SUPABASE_AUTH_KEY: ${{ secrets.SUPABASE_AUTH_KEY }}
           SUPABASE_READING_URL: ${{ secrets.SUPABASE_READING_URL }}
