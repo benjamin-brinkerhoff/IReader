@@ -35,7 +35,7 @@ object IosKoinInit {
      */
     @ObjCName("initKoin")
     fun initKoin() {
-        initKoinWithModules()
+        initKoinWithModules(emptyList())
     }
 
     @ObjCName("initKoinWithModules")
