@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ComplexCondition:MainActivity.kt$MainActivity$scheme == "ir.kazemcodes.infinityreader.debug" || scheme == "ir.kazemcodes.infinityreader" || scheme == "org.ireader.app" || scheme?.startsWith("ir.kazemcodes") == true || scheme?.startsWith("org.ireader") == true</ID>
+    <ID>CyclomaticComplexMethod:MainActivity.kt$MainActivity$private fun handleIntentAction(intent: Intent, navController: NavHostController, isNewIntent: Boolean = false): Boolean</ID>
+    <ID>ForbiddenImport:CrashActivity.kt$import java.text.SimpleDateFormat</ID>
+    <ID>ForbiddenImport:DatabaseMigrationHelper.kt$import java.io.File</ID>
+    <ID>ForbiddenImport:ExtensionCacheValidator.kt$import java.io.File</ID>
+    <ID>FunctionNaming:ConfirmExit.kt$@Composable fun ConfirmExit()</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@Composable fun CrashScreen(crashReport: CrashReport)</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@Composable fun CrashScreenWithLoading(crashReport: CrashReport)</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@Composable fun DatabaseMigrationCard( conflictingTables: List&lt;String>, onFixDatabase: () -> Unit )</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@Composable fun DeviceInfoRow(label: String, value: String)</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@Composable fun InfoCard(title: String, content: String, icon: androidx.compose.ui.graphics.vector.ImageVector)</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@Composable fun LoadingScreen()</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@Composable fun MigrationOptionButton( icon: androidx.compose.ui.graphics.vector.ImageVector, title: String, description: String, color: Color, enabled: Boolean, onClick: () -> Unit )</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun DatabaseMigrationDialog( conflictingTables: List&lt;String>, selectedTables: Set&lt;String>, onTableSelectionChange: (String, Boolean) -> Unit, isProcessing: Boolean, migrationResult: String?, onDismiss: () -> Unit, onDropTables: () -> Unit, onIntelligentMigration: () -> Unit, onDeleteDatabase: () -> Unit )</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@androidx.compose.ui.tooling.preview.Preview( name = "Crash Screen - Database Migration Error", showBackground = true, showSystemUi = true ) @Composable fun CrashScreenDatabaseMigrationPreview()</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@androidx.compose.ui.tooling.preview.Preview( name = "Crash Screen - Long Message", showBackground = true, showSystemUi = true ) @Composable fun CrashScreenLongMessagePreview()</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@androidx.compose.ui.tooling.preview.Preview( name = "Crash Screen - OutOfMemoryError", showBackground = true, showSystemUi = true ) @Composable fun CrashScreenOOMPreview()</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@androidx.compose.ui.tooling.preview.Preview( name = "Crash Screen", showBackground = true, showSystemUi = true ) @Composable fun CrashScreenPreview()</ID>
+    <ID>FunctionNaming:CrashActivity.kt$@androidx.compose.ui.tooling.preview.Preview( name = "Database Migration Card", showBackground = true ) @Composable fun DatabaseMigrationCardPreview()</ID>
+    <ID>FunctionNaming:GetPermissions.kt$@Composable fun GetPermissions(uiPreferences: UiPreferences, context: Context)</ID>
+    <ID>FunctionNaming:LibraryWidgetConfigActivity.kt$@Composable fun RadioButtonOption( text: String, selected: Boolean, onClick: () -> Unit )</ID>
+    <ID>FunctionNaming:LibraryWidgetConfigActivity.kt$@Composable fun SwitchOption( text: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit )</ID>
+    <ID>FunctionNaming:LibraryWidgetConfigActivity.kt$@Composable fun WidgetConfigScreen( onConfigSaved: (String) -> Unit, onCancel: () -> Unit )</ID>
+    <ID>FunctionNaming:MainActivity.kt$MainActivity$@Composable fun HandleOnNewIntent(context: Context, navController: NavHostController)</ID>
+    <ID>FunctionNaming:MainActivity.kt$MainActivity$@Composable private fun ConfirmExit(isAtRoot: Boolean = true)</ID>
+    <ID>FunctionNaming:MainActivity.kt$MainActivity$@Composable private fun SetDefaultTheme()</ID>
+    <ID>LongMethod:CrashActivity.kt$@Composable fun CrashScreen(crashReport: CrashReport)</ID>
+    <ID>LongMethod:CrashActivity.kt$@Composable fun DatabaseMigrationCard( conflictingTables: List&lt;String>, onFixDatabase: () -> Unit )</ID>
+    <ID>LongMethod:CrashActivity.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun DatabaseMigrationDialog( conflictingTables: List&lt;String>, selectedTables: Set&lt;String>, onTableSelectionChange: (String, Boolean) -> Unit, isProcessing: Boolean, migrationResult: String?, onDismiss: () -> Unit, onDropTables: () -> Unit, onIntelligentMigration: () -> Unit, onDeleteDatabase: () -> Unit )</ID>
+    <ID>LongMethod:LibraryWidgetConfigActivity.kt$@Composable fun WidgetConfigScreen( onConfigSaved: (String) -> Unit, onCancel: () -> Unit )</ID>
+    <ID>LongMethod:MainActivity.kt$MainActivity$@OptIn(ExperimentalMaterial3Api::class, ExperimentalCoilApi::class) override fun onCreate(savedInstanceState: Bundle?)</ID>
+    <ID>LongMethod:MainActivity.kt$MainActivity$private fun handleIntentAction(intent: Intent, navController: NavHostController, isNewIntent: Boolean = false): Boolean</ID>
+    <ID>LongParameterList:CrashActivity.kt$( conflictingTables: List&lt;String>, selectedTables: Set&lt;String>, onTableSelectionChange: (String, Boolean) -> Unit, isProcessing: Boolean, migrationResult: String?, onDismiss: () -> Unit, onDropTables: () -> Unit, onIntelligentMigration: () -> Unit, onDeleteDatabase: () -> Unit )</ID>
+    <ID>LongParameterList:CrashActivity.kt$( icon: androidx.compose.ui.graphics.vector.ImageVector, title: String, description: String, color: Color, enabled: Boolean, onClick: () -> Unit )</ID>
+    <ID>MatchingDeclarationName:SecureActivityDelegateImpl.kt.kt$SecureActivityDelegateImpl : SecureActivityDelegateDefaultLifecycleObserver</ID>
+    <ID>MaxLineLength:CatalogStoreInitializer.kt$CatalogStoreInitializer$Log.info { "CatalogStoreInitializer: Engine plugins loaded in ${System.currentTimeMillis() - startTime}ms" }</ID>
+    <ID>MaxLineLength:CatalogStoreInitializer.kt$CatalogStoreInitializer$Log.info { "CatalogStoreInitializer: Initialization complete in ${System.currentTimeMillis() - startTime}ms" }</ID>
+    <ID>MaxLineLength:CrashActivity.kt$"Migration completed!\nProcessed: ${report?.tablesProcessed?.size ?: 0} tables\nBackup: ${report?.backupPath}\nPlease restart the app."</ID>
+    <ID>MaxLineLength:CrashActivity.kt$containerColor</ID>
+    <ID>MaxLineLength:CrashActivity.kt$exceptionMessage = "Failed to allocate a 524288000 byte allocation with 16777216 free bytes and 245MB until OOM"</ID>
+    <ID>MaxLineLength:CrashActivity.kt$exceptionMessage = "Migration failed: table 'Book' already exists. Cannot create table 'Chapter' due to schema conflict."</ID>
+    <ID>MaxLineLength:CrashActivity.kt$exceptionMessage = "This is a very long error message that demonstrates how the crash screen handles lengthy exception messages. It should wrap properly and remain readable even with extensive text content that spans multiple lines."</ID>
+    <ID>MaxLineLength:CrashActivity.kt$imageVector</ID>
+    <ID>MaxLineLength:CrashActivity.kt$tint</ID>
+    <ID>MaxLineLength:DatabaseMigrationHelper.kt$DatabaseMigrationHelper$"SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'"</ID>
+    <ID>MaxLineLength:DatabaseMigrationHelper.kt$DatabaseMigrationHelper$suspend</ID>
+    <ID>MaxLineLength:MainActivity.kt$MainActivity$private</ID>
+    <ID>MaxLineLength:MyApplication.kt$MyApplication$val (fromSaf, toSaf) = ireader.domain.storage.SecureStorageHelper.syncJsPluginsBidirectional(this@MyApplication)</ID>
+    <ID>MaxLineLength:SecureActivityDelegateImpl.kt.kt$SecureActivityDelegateImpl$combine</ID>
+    <ID>MaxLineLength:SecureActivityDelegateImpl.kt.kt$SecureActivityDelegateImpl$kotlin.time.Clock.System.now().toEpochMilliseconds() >= (preferences.lastAppUnlock().get() + 60 * 1000 * preferences.lockAppAfter().get())</ID>
+    <ID>MaxLineLength:SecureActivityDelegateImpl.kt.kt$SecureActivityDelegateImpl$override</ID>
+    <ID>NestedBlockDepth:ExtensionCacheValidator.kt$ExtensionCacheValidator$fun validateAndCleanExtensionCache(context: Context)</ID>
+    <ID>NestedBlockDepth:MainActivity.kt$MainActivity$private fun handleIntentAction(intent: Intent, navController: NavHostController, isNewIntent: Boolean = false): Boolean</ID>
+    <ID>PrintStackTrace:ExtensionCacheValidator.kt$ExtensionCacheValidator$e</ID>
+    <ID>ReturnCount:MainActivity.kt$MainActivity$private fun handleIntentAction(intent: Intent, navController: NavHostController, isNewIntent: Boolean = false): Boolean</ID>
+    <ID>SwallowedException:CrashActivity.kt$e: Exception</ID>
+    <ID>SwallowedException:MyApplication.kt$MyApplication$e: Exception</ID>
+    <ID>SwallowedException:NotificationsInitializer.kt$NotificationsInitializer$e: Throwable</ID>
+    <ID>TooGenericExceptionCaught:CatalogStoreInitializer.kt$CatalogStoreInitializer$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:CrashActivity.kt$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:CrashHandler.kt$CrashHandler$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:DatabaseMigrationHelper.kt$DatabaseMigrationHelper$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:ExtensionCacheValidator.kt$ExtensionCacheValidator$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:MainActivity.kt$MainActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:MyApplication.kt$MyApplication$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:NotificationsInitializer.kt$NotificationsInitializer$e: Throwable</ID>
+    <ID>TooManyFunctions:CrashActivity.kt$org.ireader.app.crash.CrashActivity.kt</ID>
+    <ID>UnusedParameter:GetPermissions.kt$context: Context</ID>
+    <ID>UnusedParameter:GetPermissions.kt$uiPreferences: UiPreferences</ID>
+    <ID>WildcardImport:ConfirmExit.kt$import androidx.compose.runtime.*</ID>
+    <ID>WildcardImport:CrashActivity.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:CrashActivity.kt$import androidx.compose.material.icons.filled.*</ID>
+    <ID>WildcardImport:CrashActivity.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:CrashActivity.kt$import androidx.compose.runtime.*</ID>
+    <ID>WildcardImport:LibraryWidgetConfigActivity.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:LibraryWidgetConfigActivity.kt$import androidx.compose.material3.*</ID>
+    <ID>WildcardImport:LibraryWidgetConfigActivity.kt$import androidx.compose.runtime.*</ID>
+  </CurrentIssues>
+</SmellBaseline>
