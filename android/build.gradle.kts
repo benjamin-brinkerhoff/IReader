@@ -3,6 +3,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Properties
 import java.util.TimeZone
+import org.gradle.api.tasks.compile.JavaCompile
+import org.gradle.jvm.toolchain.JavaLanguageVersion
+import org.gradle.jvm.toolchain.JavaToolchainService
 
 plugins {
     id("com.android.application")
@@ -11,6 +14,16 @@ plugins {
     id("com.google.devtools.ksp")
     alias(kotlinx.plugins.compose.compiler)
     alias(libs.plugins.jetbrainCompose)
+}
+
+val javaToolchains = extensions.getByType<JavaToolchainService>()
+
+tasks.withType<JavaCompile>().configureEach {
+    javaCompiler.set(
+        javaToolchains.compilerFor {
+            languageVersion.set(JavaLanguageVersion.of(ProjectConfig.androidJvmTarget.majorVersion))
+        }
+    )
 }
 
 // Remove x86 and x86_64 if you don't need emulator/tablet support
@@ -294,6 +307,7 @@ android {
     }
 
     kotlin {
+        jvmToolchain(ProjectConfig.androidJvmTarget.majorVersion.toInt())
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(ProjectConfig.androidJvmTarget.toString()))
             freeCompilerArgs.addAll(
