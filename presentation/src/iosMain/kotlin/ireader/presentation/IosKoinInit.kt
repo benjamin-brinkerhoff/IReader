@@ -30,8 +30,17 @@ import kotlin.native.ObjCName
  */
 @ObjCName("IosKoinInitKt")
 object IosKoinInit {
+    /**
+     * Initialize Koin for iOS from Swift with no additional modules.
+     * Use [initKoinWithModules] when custom modules are needed.
+     */
     @ObjCName("initKoin")
-    fun initKoin(additionalModules: List<Module> = emptyList()) {
+    fun initKoin() {
+        initKoinWithModules(emptyList())
+    }
+
+    @ObjCName("initKoinWithModules")
+    fun initKoinWithModules(additionalModules: List<Module>) {
         startKoin {
             modules(
                 listOf(

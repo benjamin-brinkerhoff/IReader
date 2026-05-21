@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         // Initialize Koin dependency injection before any UI is created.
         // SceneDelegate handles window/UI setup via UIApplicationSceneManifest.
-        IosKoinInitKt.shared.initKoin(additionalModules: [])
+        IosKoinInitKt.initKoin()
         return true
     }
 

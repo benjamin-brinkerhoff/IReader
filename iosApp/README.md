@@ -65,7 +65,7 @@ The iOS app uses Compose Multiplatform for the entire UI:
 import presentation
 
 // Initialize Koin (call once at app startup)
-IosKoinInitKt.initKoin(additionalModules: [])
+IosKoinInitKt.initKoin()
 
 // Get Compose UI ViewController
 let composeVC = IosMainViewControllerKt.MainViewController()
