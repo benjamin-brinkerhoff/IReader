@@ -38,6 +38,7 @@ object IosKoinInit {
         initKoinWithModules()
     }
 
+    @ObjCName("initKoinWithModules")
     fun initKoinWithModules(additionalModules: List<Module> = emptyList()) {
         startKoin {
             modules(
