@@ -30,8 +30,15 @@ import kotlin.native.ObjCName
  */
 @ObjCName("IosKoinInitKt")
 object IosKoinInit {
+    /**
+     * Initialize Koin for iOS from Swift.
+     */
     @ObjCName("initKoin")
-    fun initKoin(additionalModules: List<Module> = emptyList()) {
+    fun initKoin() {
+        initKoinWithModules()
+    }
+
+    fun initKoinWithModules(additionalModules: List<Module> = emptyList()) {
         startKoin {
             modules(
                 listOf(

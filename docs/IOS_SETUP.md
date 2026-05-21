@@ -99,7 +99,7 @@ import presentation
 func application(_ application: UIApplication, 
                  didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Initialize Koin
-    IosKoinInitKt.initKoin(additionalModules: [])
+    IosKoinInitKt.initKoin()
     return true
 }
 ```
