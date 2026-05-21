@@ -174,13 +174,13 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            resources.srcDirs("src/iosMain/resources")
             dependencies {
                 // iOS-specific dependencies if needed
             }
         }
     }
 }
-
 
 
 
