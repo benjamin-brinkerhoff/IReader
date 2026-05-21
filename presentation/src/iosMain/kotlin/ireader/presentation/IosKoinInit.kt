@@ -25,55 +25,51 @@ import kotlin.experimental.ExperimentalObjCName
 import kotlin.native.ObjCName
 
 /**
- * Initialize Koin for iOS
- * This should be called from Swift before using any Kotlin code
+ * Initialize Koin for iOS.
+ * This should be called from Swift before using any Kotlin code.
  */
-@ObjCName("IosKoinInitKt")
-object IosKoinInit {
-    /**
-     * Initialize Koin for iOS from Swift with no additional modules.
-     * Use [initKoinWithModules] when custom modules are needed.
-     */
-    @ObjCName("initKoin")
-    fun initKoin() {
-        initKoinWithModules(emptyList())
-    }
+@ObjCName("initKoin")
+fun initKoin() {
+    initKoinWithModules(emptyList())
+}
 
-    @ObjCName("initKoinWithModules")
-    fun initKoinWithModules(additionalModules: List<Module>) {
-        startKoin {
-            modules(
-                listOf(
-                    // Data layer
-                    dataPlatformModule,
-                    DataModule,
-                    repositoryInjectModule,
-                    remotePlatformModule,
-                    remoteModule,
-                    reviewModule,
-                    // Domain layer
-                    preferencesInjectModule,
-                    localModule,
-                    platformServiceModule,
-                    ireader.domain.di.ServiceModule,
-                    UseCasesInject,
-                    DomainServices,
-                    DomainModule,
-                    CatalogModule,
-                    PluginModule,
-                    // Presentation layer
-                    PresentationModules,
-                    presentationPlatformModule,
-                ) + additionalModules
-            )
-        }
+/**
+ * Initialize Koin for iOS from Swift with additional modules.
+ */
+@ObjCName("initKoinWithModules")
+fun initKoinWithModules(additionalModules: List<Module>) {
+    startKoin {
+        modules(
+            listOf(
+                // Data layer
+                dataPlatformModule,
+                DataModule,
+                repositoryInjectModule,
+                remotePlatformModule,
+                remoteModule,
+                reviewModule,
+                // Domain layer
+                preferencesInjectModule,
+                localModule,
+                platformServiceModule,
+                ireader.domain.di.ServiceModule,
+                UseCasesInject,
+                DomainServices,
+                DomainModule,
+                CatalogModule,
+                PluginModule,
+                // Presentation layer
+                PresentationModules,
+                presentationPlatformModule,
+            ) + additionalModules
+        )
     }
+}
 
-    /**
-     * Helper function to create a Koin module from Swift
-     */
-    @ObjCName("createModule")
-    fun createModule(configure: Module.() -> Unit): Module {
-        return module(createdAtStart = false, moduleDeclaration = configure)
-    }
+/**
+ * Helper function to create a Koin module from Swift.
+ */
+@ObjCName("createModule")
+fun createModule(configure: Module.() -> Unit): Module {
+    return module(createdAtStart = false, moduleDeclaration = configure)
 }
